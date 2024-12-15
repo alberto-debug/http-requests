@@ -46,4 +46,15 @@ public class StudentController {
 
     }
 
+    //Get students by email
+    @GetMapping("/{email}")
+    public ResponseEntity<Student> getStudentByEmail(@PathVariable String email){
+        Student student = studentService.getStudentsByEmail(email);
+        if (student != null){
+            return new ResponseEntity<>(student, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(student,HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

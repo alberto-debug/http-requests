@@ -20,17 +20,17 @@ public class StudentService {
     }
     
     //Get all students
-    public List<Student> getAllStudents(Student student){
+    public List<Student> getAllStudents(){
         return studentRepository.findAll();
     }
 
     //Get student by id
-    public Optional<Student> getStudentsById(Long id){
+    public Optional<Student> getStudentsById(String id){
         return studentRepository.findById(id);
     }
 
     public Student getStudentsByEmail(String email){
         return studentRepository.findByEmail(email);
     }
-    
+
 }

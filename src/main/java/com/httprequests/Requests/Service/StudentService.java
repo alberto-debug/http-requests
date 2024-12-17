@@ -14,7 +14,6 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-
     //Register Student
     public Student registerStudent(Student student){
         return studentRepository.save(student);
@@ -30,7 +29,7 @@ public class StudentService {
         return studentRepository.findById(id);
     }
 
-    //Get Student by email
+    //Get Student by email 
     public Student getStudentByEmal(String email){
         return studentRepository.findByEmail(email);
     }

@@ -14,27 +14,28 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-    //Register a student
+
+    //Register Student
     public Student registerStudent(Student student){
         return studentRepository.save(student);
     }
-    
-    //Get all students
+
+    //Get All students
     public List<Student> getAllStudents(){
         return studentRepository.findAll();
     }
 
-    //Get student by id
-    public Optional<Student> getStudentsById(String id) {
+    //Get Student by id
+    public Optional<Student> getStuentById(String id){
         return studentRepository.findById(id);
     }
 
-    //Get Student By email
-    public Student getStudentsByEmail(String email){
+    //Get Student by email
+    public Student getStudentByEmal(String email){
         return studentRepository.findByEmail(email);
     }
 
-    //Delete Student by id
+    //Delete Student By id
     public boolean deleteStudentById(String id){
         if (studentRepository.existsById(id)){
             studentRepository.deleteById(id);

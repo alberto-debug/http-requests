@@ -15,53 +15,6 @@ import java.util.Optional;
 @RequestMapping("/students")
 public class StudentController {
 
-    @Autowired
-    private StudentService studentService;
 
-    //register students
-    @PostMapping("/register")
-    public ResponseEntity<Student> registerStudent(@RequestBody Student student){
-        Student registeredStudent = studentService.registerStudent(student);
-        return ResponseEntity.ok(registeredStudent);
-    }
-
-    //Get all students
-    @GetMapping("/")
-    public ResponseEntity<List<Student>> getAllStudents(){
-        List<Student> students = studentService.getAllStudents();
-        if (students.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(students, HttpStatus.OK);
-    }
-
-    //Get students by id
-   // @PathVariable Long id: Maps the id part of the URL (/{id}) to the id parameter in the method. For example, if
-    // the request is GET /students/123, id will be 123.
-    @GetMapping("/{id}")
-    public ResponseEntity<Student> getStudentById(@PathVariable String id){
-        Optional<Student> student = studentService.getStudentsById(id);
-        return student.map(s -> new ResponseEntity<>(s,HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-
-    }
-
-    //Get students by email
-    @GetMapping("/{email}")
-    public ResponseEntity<Student> getStudentByEmail(@PathVariable String email){
-        Student student = studentService.getStudentsByEmail(email);
-        if (student != null){
-            return new ResponseEntity<>(student, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    //Delete Student
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteStudentById(@PathVariable String id){
-        boolean deleted = studentService.deleteStudentById(id);
-        return deleted ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
 
 }

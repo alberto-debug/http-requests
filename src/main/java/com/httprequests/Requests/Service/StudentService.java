@@ -25,12 +25,22 @@ public class StudentService {
     }
 
     //Get student by id
-    public Optional<Student> getStudentsById(String id){
+    public Optional<Student> getStudentsById(String id) {
         return studentRepository.findById(id);
     }
 
+    //Get Student By email
     public Student getStudentsByEmail(String email){
         return studentRepository.findByEmail(email);
+    }
+
+    //Delete Student by id
+    public boolean deleteStudentById(String id){
+        if (studentRepository.existsById(id)){
+            studentRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
 }

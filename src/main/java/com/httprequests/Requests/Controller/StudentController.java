@@ -33,28 +33,19 @@ public class StudentController {
     public ResponseEntity<List<Student>> getAllStudents(){
         List<Student> students = studentService.getAllStudents();
         if (students.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return ResponseEntity.noContent().build();
         }
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok(students);
     }
 
+
+    // Fetch by ID
     @GetMapping("/{id}")
-    public ResponseEntity<Student> getStudentsById(@PathVariable  String id){
-        Optional<Student> student = studentService.getStuentById(id);
-        return student.map(s -> new ResponseEntity<>(s, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<Student> getStudentsById(@PathVariable String id) {
+        return studentService.getStudentById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
-
-    @GetMapping("/{email}")
-    public ResponseEntity<Student> getStudentByEmail(@PathVariable String email){
-        Student student = studentService.getStudentByEmal(email);
-        if (student != null){
-            return new ResponseEntity<>(student, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
 
 
     //Delete Students by id

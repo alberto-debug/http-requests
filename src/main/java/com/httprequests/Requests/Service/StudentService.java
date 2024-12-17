@@ -1,6 +1,7 @@
 package com.httprequests.Requests.Service;
 
 import com.httprequests.Requests.Repository.StudentRepository;
+
 import com.httprequests.Requests.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,13 +26,8 @@ public class StudentService {
     }
 
     //Get Student by id
-    public Optional<Student> getStuentById(String id){
+    public Optional<Student> getStudentById(String id){
         return studentRepository.findById(id);
-    }
-
-    //Get Student by email 
-    public Student getStudentByEmal(String email){
-        return studentRepository.findByEmail(email);
     }
 
     //Delete Student By id

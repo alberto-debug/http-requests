@@ -11,12 +11,16 @@ public class Student {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "uuid", unique = true)
+    @Column(name = "id", unique = true)
     private String id;
 
     private String name;
     private String email;
     private String department;
+
+    public Student(){
+
+    }
 
     public Student(String name, String email, String department){
         this.name = name;

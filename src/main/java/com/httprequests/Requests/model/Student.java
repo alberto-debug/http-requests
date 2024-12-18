@@ -8,28 +8,31 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "students")
 public class Student {
 
-
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(name = "id", unique = true)
-    private Long id;
+    private String id;
 
     private String name;
     private String email;
-    private String address;
+    private String department;
 
-    public Student(String name, String email, String address){
-        this.name = name;
-        this.email = email;
-        this.address = address;
+    public Student(){
+
     }
 
-    public Long getId() {
+    public Student(String name, String email, String department){
+        this.name = name;
+        this.email = email;
+        this.department = department;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -49,11 +52,11 @@ public class Student {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 }

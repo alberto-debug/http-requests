@@ -1,6 +1,7 @@
 package com.httprequests.Requests.Service;
 
 import com.httprequests.Requests.Repository.StudentRepository;
+
 import com.httprequests.Requests.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,24 +15,28 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-    //Register a student
+    //Register Student
     public Student registerStudent(Student student){
         return studentRepository.save(student);
     }
-    
-    //Get all students
-    public List<Student> getAllStudents(Student student){
+
+    //Get All students
+    public List<Student> getAllStudents(){
         return studentRepository.findAll();
     }
 
-    //Get student by id
-    public Optional<Student> getStudentsById(Long id){
+    //Get Student by id
+    public Optional<Student> getStudentById(String id){
         return studentRepository.findById(id);
     }
 
-    public Student getStudentsByEmail(String email){
-        return studentRepository.findByEmail(email);
+    //Delete Student By id
+    public boolean deleteStudentById(String id){
+        if (studentRepository.existsById(id)){
+            studentRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
-
 
 }
